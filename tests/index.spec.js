@@ -31,4 +31,7 @@ describe('filters the source array', () => {
   it('should return false if tested item not an array', () => {
     expect(filterArray([7])).to.equal(false)
   })
+  it('should return false if tested item is object', () => {
+    expect(filterArray({})).to.equal(false)
+  })
 })
