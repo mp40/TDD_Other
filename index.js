@@ -12,7 +12,7 @@ const testArray = function (arrayToFilter) {
 
 const checkIfObject = function (arrayToTest) {
   let result = false
-  if (typeof arrayToTest === 'object') {
+  if (typeof arrayToTest === 'object' && Array.isArray(arrayToTest) === false) {
     result = true
   }
   return result

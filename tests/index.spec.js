@@ -60,9 +60,12 @@ describe('filters out non-Array items from source array', () => {
   })
 })
 
-describe('filters out arrays which do not contain objects', () => {
+describe('returns true if item is object', () => {
   it('should return true if object', () => {
-    expect(checkIfObject([{}])).to.equal(true)
+    expect(checkIfObject({})).to.equal(true)
     expect(checkIfObject(7)).to.equal(false)
+  })
+  it('should return false if array', () => {
+    expect(checkIfObject([])).to.equal(false)
   })
 })
