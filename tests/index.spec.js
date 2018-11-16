@@ -80,5 +80,8 @@ describe('returns true if item is object', () => {
 describe('filters out arrays that do not only contain objects', () => {
   it('should filter out arrays which do not only contain objects', () => {
     expect(filterNonObjects([{}, {}, {}]).length).to.equal(3)
+    expect(filterNonObjects([{}, {},
+      [], 7, null
+    ]).length).to.equal(2)
   })
 })
