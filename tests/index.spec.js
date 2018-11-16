@@ -25,14 +25,14 @@ describe('tests', () => {
   })
 })
 
-describe('Tests if index is array in array with length of one', () => {
+describe('Tests if item is array', () => {
   it('should return true if tested item is array', () => {
-    expect(testArray([
+    expect(testArray(
       []
-    ])).to.equal(true)
+    )).to.equal(true)
   })
   it('should return false if tested item not an array', () => {
-    expect(testArray([7])).to.equal(false)
+    expect(testArray(7)).to.equal(false)
   })
   it('should return false if tested item is object', () => {
     expect(testArray({})).to.equal(false)
@@ -40,11 +40,18 @@ describe('Tests if index is array in array with length of one', () => {
 })
 
 describe('filters out non-Array items from source array', () => {
-  const arrayToTest = [7, {},
+  const arrayEqualsTwo = [7, {},
     [],
-    [], true, null
+    [], true
   ]
-  it('should return true if tested item is array', () => {
-    expect(filterArray(arrayToTest).length).to.equal(2)
+  it('should filter out non-array items from array', () => {
+    expect(filterArray(arrayEqualsTwo).length).to.equal(2)
+  })
+  const arrayEqualsFour = [7, null, [], undefined, false, [],
+    [],
+    [], {}
+  ]
+  it('should filter null and undefined from array', () => {
+    expect(filterArray(arrayEqualsFour).length).to.equal(4)
   })
 })

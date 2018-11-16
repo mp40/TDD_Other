@@ -4,14 +4,16 @@ const test = function () {
 
 const testArray = function (arrayToFilter) {
   let result = false
-  if (Array.isArray(arrayToFilter[0])) {
+  if (Array.isArray(arrayToFilter)) {
     result = true
   };
   return result
 }
 
 const filterArray = function (arrayToFilter) {
-
+  return arrayToFilter.filter((item) => {
+    return testArray(item)
+  })
 }
 
 module.exports = {
