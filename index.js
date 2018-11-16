@@ -2,7 +2,7 @@ const test = function () {
   return 'working'
 }
 
-const filterArray = function (arrayToFilter) {
+const testArray = function (arrayToFilter) {
   let result = false
   if (Array.isArray(arrayToFilter[0])) {
     result = true
@@ -10,7 +10,12 @@ const filterArray = function (arrayToFilter) {
   return result
 }
 
+const filterArray = function (arrayToFilter) {
+
+}
+
 module.exports = {
   test,
+  testArray,
   filterArray
 }
