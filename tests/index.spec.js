@@ -16,6 +16,10 @@ const {
 } = require('..')
 
 const {
+  filterNonArray
+} = require('..')
+
+const {
   testArray
 } = require('..')
 
@@ -53,14 +57,14 @@ describe('filters out non-Array items from source array', () => {
     [], true
   ]
   it('should filter out non-array items from array', () => {
-    expect(filterArray(arrayEqualsTwo).length).to.equal(2)
+    expect(filterNonArray(arrayEqualsTwo).length).to.equal(2)
   })
   const arrayEqualsFour = [7, null, [], undefined, false, [],
     [],
     [], {}
   ]
   it('should filter null and undefined from array', () => {
-    expect(filterArray(arrayEqualsFour).length).to.equal(4)
+    expect(filterNonArray(arrayEqualsFour).length).to.equal(4)
   })
 })
 
@@ -83,5 +87,14 @@ describe('filters out arrays that do not only contain objects', () => {
     expect(filterNonObjects([{}, {},
       [], 7, null
     ]).length).to.equal(2)
+  })
+})
+
+describe('Takes an array and returns a filtered array that only contains arrays of objects', () => {
+  const arrayToTest = [{},
+    [], true, null, undefined, false, 11, 'hi', [], {}
+  ]
+  it('should return an array length of two', () => {
+    expect(filterArray(arrayToTest).length).to.equal(2)
   })
 })

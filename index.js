@@ -1,39 +1,44 @@
 const test = function () {
-  return 'working'
+    return 'working'
 }
 
 const testArray = function (valueToTest) {
-  let result = false
-  if (Array.isArray(valueToTest)) {
-    result = true
-  };
-  return result
+    let result = false
+    if (Array.isArray(valueToTest)) {
+        result = true
+    };
+    return result
 }
 
 const checkIfObject = function (valueToTest) {
-  let result = false
-  if (typeof valueToTest === 'object' && Array.isArray(valueToTest) === false && valueToTest !== null) {
-    result = true
-  }
-  return result
+    let result = false
+    if (typeof valueToTest === 'object' && Array.isArray(valueToTest) === false && valueToTest !== null) {
+        result = true
+    }
+    return result
 }
 
 const filterNonObjects = function (arrayToFilter) {
-  return arrayToFilter.filter((item) => {
-    return checkIfObject(item)
-  })
+    return arrayToFilter.filter((item) => {
+        return checkIfObject(item)
+    })
+}
+
+const filterNonArray = function (arrayToFilter) {
+    return arrayToFilter.filter((item) => {
+        return testArray(item)
+    })
 }
 
 const filterArray = function (arrayToFilter) {
-  return arrayToFilter.filter((item) => {
-    return testArray(item)
-  })
+    return true //need to run everything through the stuff above and then refactor.....
 }
 
 module.exports = {
-  test,
-  testArray,
-  filterArray,
-  checkIfObject,
-  filterNonObjects
+    test,
+    testArray,
+    filterArray,
+    checkIfObject,
+    filterNonObjects,
+    filterNonArray
 }
