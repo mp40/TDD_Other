@@ -22,10 +22,13 @@ describe('tests', () => {
 })
 
 describe('filters the source array', () => {
-  it('return true if tested item is array', () => {
+  it('should return true if tested item is array', () => {
     const testArray = [
       []
     ]
     expect(filterArray(testArray)).to.equal(true)
+  })
+  it('should return false if tested item not an array', () => {
+    expect(filterArray([7]).to.equal(false))
   })
 })
