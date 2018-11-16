@@ -68,4 +68,7 @@ describe('returns true if item is object', () => {
   it('should return false if array', () => {
     expect(checkIfObject([])).to.equal(false)
   })
+  it('should return false if value is null', () => {
+    expect(checkIfObject(null)).to.equal(false)
+  })
 })

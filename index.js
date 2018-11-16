@@ -2,17 +2,17 @@ const test = function () {
   return 'working'
 }
 
-const testArray = function (arrayToFilter) {
+const testArray = function (valueToTest) {
   let result = false
-  if (Array.isArray(arrayToFilter)) {
+  if (Array.isArray(valueToTest)) {
     result = true
   };
   return result
 }
 
-const checkIfObject = function (arrayToTest) {
+const checkIfObject = function (valueToTest) {
   let result = false
-  if (typeof arrayToTest === 'object' && Array.isArray(arrayToTest) === false) {
+  if (typeof valueToTest === 'object' && Array.isArray(valueToTest) === false && valueToTest !== null) {
     result = true
   }
   return result
