@@ -3,7 +3,7 @@ const test = function () {
 }
 
 const filterArray = function () {
-
+  return true
 }
 
 module.exports = {
