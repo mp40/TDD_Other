@@ -2,8 +2,12 @@ const test = function () {
   return 'working'
 }
 
-const filterArray = function () {
-  return true
+const filterArray = function (arrayToFilter) {
+  let result = false
+  if (Array.isArray(arrayToFilter[0])) {
+    result = true
+  };
+  return result
 }
 
 module.exports = {
