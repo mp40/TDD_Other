@@ -11,7 +11,11 @@ const testArray = function (arrayToFilter) {
 }
 
 const checkIfObject = function (arrayToTest) {
-  return true
+  let result = false
+  if (typeof arrayToTest === 'object') {
+    result = true
+  }
+  return result
 }
 
 const filterArray = function (arrayToFilter) {
