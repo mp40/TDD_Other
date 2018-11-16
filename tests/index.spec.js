@@ -19,6 +19,10 @@ const {
   testArray
 } = require('..')
 
+const {
+  checkIfObject
+} = require('..')
+
 describe('tests', () => {
   it('should prove test environment is set up', () => {
     expect(test()).to.equal('working')
@@ -53,5 +57,11 @@ describe('filters out non-Array items from source array', () => {
   ]
   it('should filter null and undefined from array', () => {
     expect(filterArray(arrayEqualsFour).length).to.equal(4)
+  })
+})
+
+describe('filters out arrays which do not contain objects', () => {
+  it('should return true if object', () => {
+    expect(checkIfObject([{}])).to.equal(true)
   })
 })

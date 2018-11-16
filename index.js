@@ -10,6 +10,10 @@ const testArray = function (arrayToFilter) {
   return result
 }
 
+const checkIfObject = function (arrayToTest) {
+
+}
+
 const filterArray = function (arrayToFilter) {
   return arrayToFilter.filter((item) => {
     return testArray(item)
@@ -19,5 +23,6 @@ const filterArray = function (arrayToFilter) {
 module.exports = {
   test,
   testArray,
-  filterArray
+  filterArray,
+  checkIfObject
 }
