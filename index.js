@@ -11,7 +11,7 @@ const testArray = function (arrayToFilter) {
 }
 
 const checkIfObject = function (arrayToTest) {
-
+  return true
 }
 
 const filterArray = function (arrayToFilter) {
