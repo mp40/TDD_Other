@@ -63,5 +63,6 @@ describe('filters out non-Array items from source array', () => {
 describe('filters out arrays which do not contain objects', () => {
   it('should return true if object', () => {
     expect(checkIfObject([{}])).to.equal(true)
+    expect(checkIfObject(7)).to.equal(false)
   })
 })
