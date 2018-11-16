@@ -23,6 +23,10 @@ const {
   checkIfObject
 } = require('..')
 
+const {
+  filterNonObjects
+} = require('..')
+
 describe('tests', () => {
   it('should prove test environment is set up', () => {
     expect(test()).to.equal('working')
@@ -70,5 +74,11 @@ describe('returns true if item is object', () => {
   })
   it('should return false if value is null', () => {
     expect(checkIfObject(null)).to.equal(false)
+  })
+})
+
+describe('filters out arrays that do not only contain objects', () => {
+  it('should filter out arrays which do not only contain objects', () => {
+    expect(filterNonObjects([{}, {}, {}]).length).to.equal(3)
   })
 })
