@@ -1,7 +1,7 @@
 {
   "name": "TDD_Other",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "theBar.js",
   "repository": "https://github.com/mp40/TDD_Other.git",
   "author": "mp40 <philps.matthew@gmail.com>",
   "license": "MIT",
