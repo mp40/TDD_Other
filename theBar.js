@@ -20,7 +20,9 @@ const bar = {
 }
 
 class Customer {
-  constructor (favourite = 'asahi') {
+  constructor (wallet, stamina, favourite = 'asahi') {
+    this.wallet = wallet
+    this.stamina = stamina
     this.favourite = favourite
   }
 }
