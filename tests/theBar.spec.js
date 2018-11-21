@@ -10,7 +10,8 @@ const {
 const {
   test,
   bar,
-  Customer
+  Customer,
+  buyDrinks
 } = require('..')
 
 describe('tests', () => {
@@ -63,5 +64,13 @@ describe('customers', () => {
   it('should be possible to change favorite beer', () => {
     const yebisuCustomer = new Customer(1000, 2, 'yebisu')
     expect(yebisuCustomer.favourite).to.equal('yebisu')
+  })
+})
+
+describe('the customer at the bar', () => {
+  const newCustomer = new Customer(1000, 2)
+  buyDrinks(newCustomer)
+  it('should be possible for the customer to buy a drink', () => {
+    expect(newCustomer.wallet).to.equal(500)
   })
 })

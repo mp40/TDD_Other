@@ -27,8 +27,13 @@ class Customer {
   }
 }
 
+const buyDrinks = function (customer) {
+
+}
+
 module.exports = {
   test,
   bar,
-  Customer
+  Customer,
+  buyDrinks
 }
