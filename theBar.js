@@ -19,7 +19,10 @@ const bar = {
   closingTime: 12
 }
 
+class Customer {}
+
 module.exports = {
   test,
-  bar
+  bar,
+  Customer
 }

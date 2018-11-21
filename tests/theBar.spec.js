@@ -9,7 +9,8 @@ const {
 
 const {
   test,
-  bar
+  bar,
+  Customer
 } = require('..')
 
 describe('tests', () => {
@@ -42,5 +43,12 @@ describe('The bar', () => {
   })
   it('should have a closing time of midnight', () => {
     expect(bar.closingTime).to.equal(12)
+  })
+})
+
+describe('customers', () => {
+  it('should have a Customer Class', () => {
+    const testCustomer = new Customer()
+    expect(testCustomer).to.be.a('object')
   })
 })
