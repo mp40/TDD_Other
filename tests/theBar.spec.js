@@ -8,11 +8,18 @@ const {
 } = require('mocha')
 
 const {
-  test
+  test,
+  bar
 } = require('..')
 
-describe.only('tests', () => {
+describe('tests', () => {
   it('should prove test environment is set up', () => {
     expect(test()).to.equal('working')
+  })
+})
+
+describe('The bar', () => {
+  it('should have a fridge', () => {
+    expect(bar.fridge).to.equal(true)
   })
 })
