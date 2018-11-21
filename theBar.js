@@ -27,13 +27,24 @@ class Customer {
   }
 }
 
-const buyDrinks = function (customer) {
+const findDrink = function (customer) {
+  let result
+  for (let beer in bar.fridge) {
+    if (customer.favourite === beer) {
+      result = beer
+    }
+    return result
+  }
+}
 
+const buyDrinks = function (customer) {
+  return true
 }
 
 module.exports = {
   test,
   bar,
   Customer,
+  findDrink,
   buyDrinks
 }
