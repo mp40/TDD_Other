@@ -47,8 +47,15 @@ describe('The bar', () => {
 })
 
 describe('customers', () => {
+  const testCustomer = new Customer()
   it('should have a Customer Class', () => {
-    const testCustomer = new Customer()
     expect(testCustomer).to.be.a('object')
+  })
+  it('should have a default favourite beer of Asahi', () => {
+    expect(testCustomer.favourite).to.equal('asahi')
+  })
+  it('should be possible to change favorite beer', () => {
+    const yebisuCustomer = new Customer('yebisu')
+    expect(yebisuCustomer.favourite).to.equal('yebisu')
   })
 })

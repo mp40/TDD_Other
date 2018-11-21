@@ -19,7 +19,11 @@ const bar = {
   closingTime: 12
 }
 
-class Customer {}
+class Customer {
+  constructor (favourite = 'asahi') {
+    this.favourite = favourite
+  }
+}
 
 module.exports = {
   test,
