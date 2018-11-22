@@ -37,19 +37,15 @@ const findDrink = function (customer) {
   }
 }
 
-// const buyDrinks = function (customer) {
-//   // const choice = customer.favourite;
-//   // const cost = bar.fridge.choice.price;
-//   // customer.wallet -= cost
-
-//   return true
-
-// }
+const buyDrink = function (customer) {
+  const beer = findDrink(customer)
+  customer.wallet -= beer.price
+}
 
 module.exports = {
   test,
   bar,
   Customer,
-  findDrink
-  // buyDrinks
+  findDrink,
+  buyDrink
 }

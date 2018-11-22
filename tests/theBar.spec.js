@@ -11,8 +11,8 @@ const {
   test,
   bar,
   Customer,
-  findDrink
-  // buyDrinks
+  findDrink,
+  buyDrink
 } = require('..')
 
 describe('tests', () => {
@@ -70,11 +70,11 @@ describe('customers', () => {
 
 describe('the customer at the bar', () => {
   const newCustomer = new Customer(1000, 2)
-  // // expect({a: 1, b: 2}).to.be.an('object').that.has.all.keys('a', 'b');
   it('should be possible to find the customer a beer', () => {
     expect(findDrink(newCustomer)).to.be.an('object').that.contains.keys('price', 'amount')
   })
-  // it('should be possible for the customer to buy a beer', () => {
-  //   expect(buyDrink(newCustomer))
-  // })
+  it('should be possible for the customer to buy a beer', () => {
+    buyDrink(newCustomer)
+    expect(newCustomer.wallet).to.equal(500)
+  })
 })
