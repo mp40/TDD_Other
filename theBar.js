@@ -52,10 +52,26 @@ const buyDrink = function (customer) {
   removeDrink(customer)
 }
 
+const drinkBeer = function (customer, startTime) {
+  const beerPrice = bar.fridge[customer.favourite].price
+  let timeLeft = customer.stamina
+  let timeRemaining = startTime
+  for (let i = customer.wallet; i >= beerPrice; i -= beerPrice) {
+    console.log(timeRemaining)
+    if (timeLeft <= 0 || timeRemaining >= 12) {
+      break
+    }
+    buyDrink(customer)
+    timeLeft -= 0.5 // based on drinking speed of 2 drinks per hour
+    timeRemaining += 0.5
+  }
+}
+
 module.exports = {
   test,
   bar,
   Customer,
   findDrink,
-  buyDrink
+  buyDrink,
+  drinkBeer
 }
