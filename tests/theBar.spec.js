@@ -80,4 +80,7 @@ describe('the customer at the bar', () => {
   it('should remove a beer from the fridge when the customer buys it', () => {
     expect(bar.fridge.asahi.amount).to.equal(11)
   })
+  it('should add money to the takings when beer is purchased', () => {
+    expect(bar.takings).to.equal(500)
+  })
 })

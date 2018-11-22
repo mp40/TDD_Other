@@ -20,7 +20,7 @@ const bar = {
 }
 
 class Customer {
-  constructor(wallet, stamina, favourite = 'asahi') {
+  constructor (wallet, stamina, favourite = 'asahi') {
     this.wallet = wallet
     this.stamina = stamina
     this.favourite = favourite
@@ -48,6 +48,7 @@ const removeDrink = function (customer) {
 const buyDrink = function (customer) {
   const beer = findDrink(customer)
   customer.wallet -= beer.price
+  bar.takings += beer.price
   removeDrink(customer)
 }
 
