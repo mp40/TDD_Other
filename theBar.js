@@ -20,7 +20,7 @@ const bar = {
 }
 
 class Customer {
-  constructor (wallet, stamina, favourite = 'asahi') {
+  constructor(wallet, stamina, favourite = 'asahi') {
     this.wallet = wallet
     this.stamina = stamina
     this.favourite = favourite
@@ -37,9 +37,18 @@ const findDrink = function (customer) {
   }
 }
 
+const removeDrink = function (customer) {
+  for (let beer in bar.fridge) {
+    if (customer.favourite === beer) {
+      bar.fridge[beer].amount -= 1
+    }
+  }
+}
+
 const buyDrink = function (customer) {
   const beer = findDrink(customer)
   customer.wallet -= beer.price
+  removeDrink(customer)
 }
 
 module.exports = {
