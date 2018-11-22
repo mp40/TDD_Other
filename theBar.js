@@ -31,20 +31,25 @@ const findDrink = function (customer) {
   let result
   for (let beer in bar.fridge) {
     if (customer.favourite === beer) {
-      result = beer
+      result = bar.fridge[beer]
     }
     return result
   }
 }
 
-const buyDrinks = function (customer) {
-  return true
-}
+// const buyDrinks = function (customer) {
+//   // const choice = customer.favourite;
+//   // const cost = bar.fridge.choice.price;
+//   // customer.wallet -= cost
+
+//   return true
+
+// }
 
 module.exports = {
   test,
   bar,
   Customer,
-  findDrink,
-  buyDrinks
+  findDrink
+  // buyDrinks
 }
