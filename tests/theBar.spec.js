@@ -10,10 +10,11 @@ const {
 
 const {
   test,
-  bar,
+  createBar,
   Customer,
   findDrink,
   buyDrink
+
 } = require('..')
 
 describe('tests', () => {
@@ -23,6 +24,7 @@ describe('tests', () => {
 })
 
 describe('the bar', () => {
+  const bar = createBar()
   it('should have a fridge containing Asahi and Yebisu beers', () => {
     expect(bar.fridge).to.contain.keys('asahi', 'yebisu')
   })
@@ -46,15 +48,16 @@ describe('customer properties', () => {
 })
 
 describe('the customer drinking at the bar', () => {
+  const bar = createBar()
   describe('finding the right beer', () => {
     it('should be possible to find their favourite beer', () => {
-      const newCustomer = new Customer(1000, 2)
-      const drink = findDrink(newCustomer)
+      const customer = new Customer(1000, 2)
+      const drink = findDrink(customer, bar)
       expect(drink.price).to.equal(500)
     })
     it('should return undefined if their favourite beer is not stocked', () => {
       const customer = new Customer(1000, 2, 'kirin')
-      const drink = findDrink(customer)
+      const drink = findDrink(customer, bar)
       expect(drink).to.equal(undefined)
     })
     xit('should return out of beer message if amount is zero', () => {
@@ -62,10 +65,11 @@ describe('the customer drinking at the bar', () => {
     })
   })
   describe('buying a beer', () => {
-    const newCustomer = new Customer(1000, 2)
-    buyDrink(newCustomer)
+    const customer = new Customer(1000, 2)
+    const bar = createBar()
+    buyDrink(customer, bar)
     it('should cost money to buy a beer', () => {
-      expect(newCustomer.wallet).to.equal(500)
+      expect(customer.wallet).to.equal(500)
     })
     it('should remove a beer from the fridge when the customer buys it', () => {
       expect(bar.fridge.asahi.amount).to.equal(11)
