@@ -4,8 +4,7 @@ const {
 
 const {
   describe,
-  it,
-  xit
+  it
 } = require('mocha')
 
 const {
@@ -48,20 +47,25 @@ describe('customer properties', () => {
 })
 
 describe('the customer drinking at the bar', () => {
-  const bar = createBar()
   describe('finding the right beer', () => {
     it('should be possible to find their favourite beer', () => {
+      const bar = createBar()
       const customer = new Customer(1000, 2)
       const drink = findDrink(customer, bar)
       expect(drink.price).to.equal(500)
     })
     it('should return undefined if their favourite beer is not stocked', () => {
+      const bar = createBar()
       const customer = new Customer(1000, 2, 'kirin')
       const drink = findDrink(customer, bar)
       expect(drink).to.equal(undefined)
     })
-    xit('should return out of beer message if amount is zero', () => {
-
+    it('should return out of beer message if amount is zero', () => {
+      const barWithoutBeer = createBar()
+      barWithoutBeer.fridge.asahi.amount = 0
+      const customer = new Customer(1000, 2)
+      const drink = findDrink(customer, barWithoutBeer)
+      expect(drink).to.equal('out of asahi')
     })
   })
   describe('buying a beer', () => {
@@ -74,7 +78,6 @@ describe('the customer drinking at the bar', () => {
     it('should remove a beer from the fridge when the customer buys it', () => {
       expect(bar.fridge.asahi.amount).to.equal(11)
     })
-    // Test for edge case - running out of beer
     it('should add money to the takings when beer is purchased', () => {
       expect(bar.takings).to.equal(500)
     })

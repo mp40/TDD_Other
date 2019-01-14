@@ -6,12 +6,10 @@ const createBar = function () {
   return {
     fridge: {
       asahi: {
-        type: 'beer',
         price: 500,
         amount: 12
       },
       yebisu: {
-        type: 'fancy beer',
         price: 700,
         amount: 6
       }
@@ -34,8 +32,8 @@ const findDrink = function (customer, bar) {
   for (let beer in bar.fridge) {
     if (customer.favourite === beer) {
       result = bar.fridge[beer]
+      return result.amount > 0 ? result : `out of ${beer}`
     }
-    return result
   }
 }
 
