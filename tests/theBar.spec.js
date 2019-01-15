@@ -117,8 +117,10 @@ describe('the customer drinking at the bar', () => {
       drinkBeer(lateCustomer, bar, 10)
       expect(lateCustomer.wallet).to.equal(3000)
     })
-    it('should stop drinking when favourite beer runs out', () => {
-      // TODO
+    it('should stop drinking when their favourite beer runs out', () => {
+      const thirstyCustomer = new Customer(5000, 6, 3, 'yebisu')
+      drinkBeer(thirstyCustomer, bar, 6)
+      expect(thirstyCustomer.wallet).to.equal(800)
     })
   })
 })

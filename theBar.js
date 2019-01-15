@@ -48,7 +48,7 @@ const removeDrink = function (customer, bar) {
 
 const buyDrink = function (customer, bar) {
   const beer = findDrink(customer, bar)
-  if (customer.wallet < beer.price) {
+  if (customer.wallet < beer.price || beer === `out of ${customer.favourite}`) {
     return
   }
   customer.wallet -= beer.price
