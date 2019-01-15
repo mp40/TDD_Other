@@ -20,9 +20,10 @@ const createBar = function () {
 }
 
 class Customer {
-  constructor (wallet, stamina, favourite = 'asahi') {
+  constructor (wallet, stamina, perHour, favourite = 'asahi') {
     this.wallet = wallet
     this.stamina = stamina
+    this.perHour = perHour
     this.favourite = favourite
   }
 }
@@ -47,9 +48,35 @@ const removeDrink = function (customer, bar) {
 
 const buyDrink = function (customer, bar) {
   const beer = findDrink(customer, bar)
+  if (customer.wallet < beer.price) {
+    return
+  }
   customer.wallet -= beer.price
   bar.takings += beer.price
   removeDrink(customer, bar)
+}
+
+const eachHour = function (customer, bar) {
+  for (let i = 0; i < customer.perHour; i++) {
+    buyDrink(customer, bar)
+  }
+}
+
+const drinkBeer = function (customer, bar, startTime) {
+  if (startTime === undefined) {
+    return startTime
+  }
+  const beerPrice = bar.fridge[customer.favourite].price
+  let timeLeft = customer.stamina
+  let timeRemaining = startTime
+  for (let i = customer.wallet; i >= beerPrice; i -= beerPrice) {
+    if (timeLeft <= 0 || timeRemaining >= 12) {
+      break
+    }
+    eachHour(customer, bar)
+    timeLeft--
+    timeRemaining++
+  }
 }
 
 module.exports = {
@@ -57,5 +84,6 @@ module.exports = {
   createBar,
   Customer,
   findDrink,
-  buyDrink
+  buyDrink,
+  drinkBeer
 }
