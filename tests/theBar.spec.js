@@ -8,7 +8,7 @@ const {
 } = require('mocha')
 
 const {
-  test,
+  // test,
   createBar,
   Customer,
   findDrink,
@@ -17,11 +17,11 @@ const {
 
 } = require('..')
 
-describe('tests', () => {
-  it('should prove test environment is set up', () => {
-    expect(test()).to.equal('working')
-  })
-})
+// describe('tests', () => {
+//   it('should prove test environment is set up', () => {
+//     expect(test()).to.equal('working')
+//   })
+// })
 
 describe('the bar', () => {
   const bar = createBar()
@@ -107,7 +107,7 @@ describe('the customer drinking at the bar', () => {
       expect(poorCustomer.wallet).to.equal(100)
       expect(bar.fridge.asahi.amount).to.equal(10)
     })
-    it('should stop drinking when statmina is reached', () => {
+    it('should stop drinking when stamina is reached', () => {
       const busyCustomer = new Customer(5000, 1, 2)
       drinkBeer(busyCustomer, bar, 6)
       expect(busyCustomer.wallet).to.equal(4000)
