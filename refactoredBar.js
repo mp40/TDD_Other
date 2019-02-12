@@ -32,9 +32,15 @@ const createBar = function () {
       }
       customer.wallet -= beer.price
       this.takings += beer.price
-      removeDrink(customer, this)
+      this.removeDrink(customer, this)
+    },
+    removeDrink: function (customer) {
+      for (let beer in this.fridge) {
+        if (customer.favourite === beer) {
+          this.fridge[beer].amount -= 1
+        }
+      }
     }
-
   }
 }
 
@@ -56,32 +62,26 @@ class Customer {
       if (timeLeft <= 0 || timeRemaining >= 12) {
         break
       }
-      eachHour(this, bar)
+      this.eachHour(bar)
       timeLeft--
       timeRemaining++
     }
   }
-}
-
-const removeDrink = function (customer, bar) {
-  for (let beer in bar.fridge) {
-    if (customer.favourite === beer) {
-      bar.fridge[beer].amount -= 1
+  eachHour (bar) {
+    for (let i = 0; i < this.perHour; i++) {
+      bar.buyDrink(this)
     }
   }
 }
 
-const eachHour = function (customer, bar) {
-  for (let i = 0; i < customer.perHour; i++) {
-    bar.buyDrink(customer)
-  }
-}
+// const eachHour = function (customer, bar) {
+//   for (let i = 0; i < customer.perHour; i++) {
+//     bar.buyDrink(customer)
+//   }
+// }
 
 module.exports = {
   test,
-  // Bar
   createBar,
   Customer
-  // buyDrink,
-  // drinkBeer
 }

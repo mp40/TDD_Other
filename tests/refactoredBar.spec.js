@@ -8,12 +8,9 @@ const {
 } = require('mocha')
 
 const {
-  // Bar
   test,
   createBar,
   Customer
-  // buyDrink,
-  // drinkBeer
 
 } = require('../refactoredBar')
 
