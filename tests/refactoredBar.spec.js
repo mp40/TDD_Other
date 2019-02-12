@@ -8,13 +8,14 @@ const {
 } = require('mocha')
 
 const {
+  // Bar
   test,
   createBar,
-  Customer
-  // buyDrink,
-  // drinkBeer
+  Customer,
+  buyDrink,
+  drinkBeer
 
-} = require('..')
+} = require('../refactoredBar')
 
 describe('tests', () => {
   it('should prove test environment is set up', () => {
@@ -71,55 +72,55 @@ describe('the customer drinking at the bar', () => {
       expect(drink).to.equal('out of asahi')
     })
   })
-  //   describe('buying a beer', () => {
-  //     const customer = new Customer(1000, 2)
-  //     const bar = createBar()
-  //     buyDrink(customer, bar)
-  //     it('should cost money to buy a beer', () => {
-  //       expect(customer.wallet).to.equal(500)
-  //     })
-  //     it('should remove a beer from the fridge when the customer buys it', () => {
-  //       expect(bar.fridge.asahi.amount).to.equal(11)
-  //     })
-  //     it('should add money to the takings when beer is purchased', () => {
-  //       expect(bar.takings).to.equal(500)
-  //     })
-  //   })
-  //   describe('when it is time to start drinking', () => {
-  //     const customer = new Customer(5000, 1, 2)
-  //     const bar = createBar()
+  describe.only('buying a beer', () => {
+    const customer = new Customer(1000, 2)
+    const bar = createBar()
+    buyDrink(customer, bar)
+    it('should cost money to buy a beer', () => {
+      expect(customer.wallet).to.equal(500)
+    })
+    it('should remove a beer from the fridge when the customer buys it', () => {
+      expect(bar.fridge.asahi.amount).to.equal(11)
+    })
+    it('should add money to the takings when beer is purchased', () => {
+      expect(bar.takings).to.equal(500)
+    })
+  })
+  describe('when it is time to start drinking', () => {
+    const customer = new Customer(5000, 1, 2)
+    const bar = createBar()
 
-//     it('should return undefined if the start time parameter is missing', () => {
-//       const startDrinking = drinkBeer(customer, bar)
-//       expect(startDrinking).to.equal(undefined)
-//     })
-//     it('should drink beers at the perHour rate', () => {
-//       drinkBeer(customer, bar, 6)
-//       expect(customer.wallet).to.equal(4000)
-//     })
-//   })
-//   describe('when it is time to stop drinking', () => {
-//     const bar = createBar()
-//     it('should stop drinking when customer is out of money', () => {
-//       const poorCustomer = new Customer(1100, 2, 2)
-//       drinkBeer(poorCustomer, bar, 6)
-//       expect(poorCustomer.wallet).to.equal(100)
-//       expect(bar.fridge.asahi.amount).to.equal(10)
-//     })
-//     it('should stop drinking when stamina is reached', () => {
-//       const busyCustomer = new Customer(5000, 1, 2)
-//       drinkBeer(busyCustomer, bar, 6)
-//       expect(busyCustomer.wallet).to.equal(4000)
-//     })
-//     it('should stop drinking at midnight', () => {
-//       const lateCustomer = new Customer(5000, 6, 2)
-//       drinkBeer(lateCustomer, bar, 10)
-//       expect(lateCustomer.wallet).to.equal(3000)
-//     })
-//     it('should stop drinking when their favourite beer runs out', () => {
-//       const thirstyCustomer = new Customer(5000, 6, 3, 'yebisu')
-//       drinkBeer(thirstyCustomer, bar, 6)
-//       expect(thirstyCustomer.wallet).to.equal(800)
-//     })
-//   })
+    it('should return undefined if the start time parameter is missing', () => {
+      const startDrinking = drinkBeer(customer, bar)
+      expect(startDrinking).to.equal(undefined)
+    })
+    it('should drink beers at the perHour rate', () => {
+      drinkBeer(customer, bar, 6)
+      expect(customer.wallet).to.equal(4000)
+    })
+  })
+  describe('when it is time to stop drinking', () => {
+    const bar = createBar()
+    it('should stop drinking when customer is out of money', () => {
+      const poorCustomer = new Customer(1100, 2, 2)
+      drinkBeer(poorCustomer, bar, 6)
+      expect(poorCustomer.wallet).to.equal(100)
+      expect(bar.fridge.asahi.amount).to.equal(10)
+    })
+    it('should stop drinking when stamina is reached', () => {
+      const busyCustomer = new Customer(5000, 1, 2)
+      drinkBeer(busyCustomer, bar, 6)
+      expect(busyCustomer.wallet).to.equal(4000)
+    })
+    it('should stop drinking at midnight', () => {
+      const lateCustomer = new Customer(5000, 6, 2)
+      drinkBeer(lateCustomer, bar, 10)
+      expect(lateCustomer.wallet).to.equal(3000)
+    })
+    it('should stop drinking when their favourite beer runs out', () => {
+      const thirstyCustomer = new Customer(5000, 6, 3, 'yebisu')
+      drinkBeer(thirstyCustomer, bar, 6)
+      expect(thirstyCustomer.wallet).to.equal(800)
+    })
+  })
 })
