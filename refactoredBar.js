@@ -3,7 +3,6 @@ const test = function () {
 }
 
 const createBar = function () {
-  console.log('HI')
   let bar = {
     fridge: {
       asahi: {
