@@ -24,28 +24,18 @@ const createBar = function () {
           return result.amount > 0 ? result : `out of ${beer}`
         }
       }
+    },
+    buyDrink: function (customer) {
+      const beer = this.findDrink(customer)
+      if (customer.wallet < beer.price || beer === `out of ${customer.favourite}`) {
+        return
+      }
+      customer.wallet -= beer.price
+      this.takings += beer.price
+      removeDrink(customer, this)
     }
-    // buyDrink: function (customer) {
-    //   const beer = this.findDrink(customer)
-    //   if (customer.wallet < beer.price || beer === `out of ${customer.favourite}`) {
-    //     return
-    //   }
-    //   customer.wallet -= beer.price
-    //   this.takings += beer.price
-    //   removeDrink(customer, bar)
-    // }
 
   }
-// bar.findDrink = function (customer) {
-//   let result
-//   for (let beer in this.fridge) {
-//     if (customer.favourite === beer) {
-//       result = this.fridge[beer]
-//       return result.amount > 0 ? result : `out of ${beer}`
-//     }
-//   }
-// }
-// return bar
 }
 
 class Customer {
@@ -54,6 +44,22 @@ class Customer {
     this.stamina = stamina
     this.perHour = perHour
     this.favourite = favourite
+  }
+  drinkBeer (bar, startTime) {
+    if (startTime === undefined) {
+      return startTime
+    }
+    const beerPrice = bar.fridge[this.favourite].price
+    let timeLeft = this.stamina
+    let timeRemaining = startTime
+    for (let i = this.wallet; i >= beerPrice; i -= beerPrice) {
+      if (timeLeft <= 0 || timeRemaining >= 12) {
+        break
+      }
+      eachHour(this, bar)
+      timeLeft--
+      timeRemaining++
+    }
   }
 }
 
@@ -65,36 +71,9 @@ const removeDrink = function (customer, bar) {
   }
 }
 
-const buyDrink = function (customer, bar) {
-  const beer = bar.findDrink(customer)
-  if (customer.wallet < beer.price || beer === `out of ${customer.favourite}`) {
-    return
-  }
-  customer.wallet -= beer.price
-  bar.takings += beer.price
-  removeDrink(customer, bar)
-}
-
 const eachHour = function (customer, bar) {
   for (let i = 0; i < customer.perHour; i++) {
-    buyDrink(customer, bar)
-  }
-}
-
-const drinkBeer = function (customer, bar, startTime) {
-  if (startTime === undefined) {
-    return startTime
-  }
-  const beerPrice = bar.fridge[customer.favourite].price
-  let timeLeft = customer.stamina
-  let timeRemaining = startTime
-  for (let i = customer.wallet; i >= beerPrice; i -= beerPrice) {
-    if (timeLeft <= 0 || timeRemaining >= 12) {
-      break
-    }
-    eachHour(customer, bar)
-    timeLeft--
-    timeRemaining++
+    bar.buyDrink(customer)
   }
 }
 
@@ -102,7 +81,7 @@ module.exports = {
   test,
   // Bar
   createBar,
-  Customer,
-  buyDrink,
-  drinkBeer
+  Customer
+  // buyDrink,
+  // drinkBeer
 }
