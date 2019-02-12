@@ -17,20 +17,20 @@ const {
 
 } = require('..')
 
-describe('tests', () => {
+describe.skip('tests', () => {
   it('should prove test environment is set up', () => {
     expect(test()).to.equal('working')
   })
 })
 
-describe('the bar', () => {
+describe.skip('the bar', () => {
   const bar = createBar()
   it('should have a fridge containing Asahi and Yebisu beers', () => {
     expect(bar.fridge).to.contain.keys('asahi', 'yebisu')
   })
 })
 
-describe('customer properties', () => {
+describe.skip('customer properties', () => {
   const customer = new Customer(1000, 2, 1)
   it('should have a wallet for yen', () => {
     expect(customer.wallet).to.equal(1000)
@@ -50,7 +50,7 @@ describe('customer properties', () => {
   })
 })
 
-describe('the customer drinking at the bar', () => {
+describe.skip('the customer drinking at the bar', () => {
   describe('finding the right beer', () => {
     it('should be possible to find their favourite beer', () => {
       const bar = createBar()
@@ -72,7 +72,7 @@ describe('the customer drinking at the bar', () => {
       expect(drink).to.equal('out of asahi')
     })
   })
-  describe('buying a beer', () => {
+  describe.skip('buying a beer', () => {
     const customer = new Customer(1000, 2)
     const bar = createBar()
     buyDrink(customer, bar)
@@ -86,7 +86,7 @@ describe('the customer drinking at the bar', () => {
       expect(bar.takings).to.equal(500)
     })
   })
-  describe('when it is time to start drinking', () => {
+  describe.skip('when it is time to start drinking', () => {
     const customer = new Customer(5000, 1, 2)
     const bar = createBar()
 
@@ -99,7 +99,7 @@ describe('the customer drinking at the bar', () => {
       expect(customer.wallet).to.equal(4000)
     })
   })
-  describe('when it is time to stop drinking', () => {
+  describe.skip('when it is time to stop drinking', () => {
     const bar = createBar()
     it('should stop drinking when customer is out of money', () => {
       const poorCustomer = new Customer(1100, 2, 2)
