@@ -3,7 +3,8 @@ const test = function () {
 }
 
 const createBar = function () {
-  const bar = {
+  console.log('HI')
+  let bar = {
     fridge: {
       asahi: {
         price: 500,
@@ -81,7 +82,6 @@ const drinkBeer = function (customer, bar, startTime) {
 
 module.exports = {
   test,
-  X,
   createBar,
   Customer,
   // buyDrink,
