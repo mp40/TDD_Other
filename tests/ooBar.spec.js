@@ -9,7 +9,7 @@ const {
 
 const {
   test,
-  createBar,
+  Bar,
   Customer
 
 } = require('../ooBar')
@@ -22,7 +22,7 @@ describe('tests', () => {
 
 describe('the bar', () => {
   it('should have a fridge containing Asahi and Yebisu beers', () => {
-    const bar = createBar()
+    const bar = new Bar(500, 12, 700, 6)
     expect(bar.fridge).to.contain.keys('asahi', 'yebisu')
   })
 })
@@ -50,20 +50,19 @@ describe('customer properties', () => {
 describe('the customer drinking at the bar', () => {
   describe('finding the right beer', () => {
     it('should be possible to find their favourite beer', () => {
-      const bar = createBar()
+      const bar = new Bar(500, 12, 700, 6)
       const customer = new Customer(1000, 2)
       const drink = bar.findDrink(customer)
       expect(drink.price).to.equal(500)
     })
     it('should return undefined if their favourite beer is not stocked', () => {
-      const bar = createBar()
+      const bar = new Bar(500, 12, 700, 6)
       const customer = new Customer(1000, 2, 1, 'kirin')
       const drink = bar.findDrink(customer)
       expect(drink).to.equal(undefined)
     })
     it('should return out of beer message if amount is zero', () => {
-      const barWithoutBeer = createBar()
-      barWithoutBeer.fridge.asahi.amount = 0
+      const barWithoutBeer = new Bar(500, 0, 700, 6)
       const customer = new Customer(1000, 2)
       const drink = barWithoutBeer.findDrink(customer)
       expect(drink).to.equal('out of asahi')
@@ -71,7 +70,7 @@ describe('the customer drinking at the bar', () => {
   })
   describe('buying a beer', () => {
     const customer = new Customer(1000, 2)
-    const bar = createBar()
+    const bar = new Bar(500, 12, 700, 6)
     bar.buyDrink(customer)
     it('should cost money to buy a beer', () => {
       expect(customer.wallet).to.equal(500)
@@ -85,7 +84,7 @@ describe('the customer drinking at the bar', () => {
   })
   describe('when it is time to start drinking', () => {
     const customer = new Customer(5000, 1, 2)
-    const bar = createBar()
+    const bar = new Bar(500, 12, 700, 6)
 
     it('should return undefined if the start time parameter is missing', () => {
       const startDrinking = customer.drinkBeer(bar)
@@ -97,7 +96,7 @@ describe('the customer drinking at the bar', () => {
     })
   })
   describe('when it is time to stop drinking', () => {
-    const bar = createBar()
+    const bar = new Bar(500, 12, 700, 6)
     it('should stop drinking when customer is out of money', () => {
       const poorCustomer = new Customer(1100, 2, 2)
       poorCustomer.drinkBeer(bar, 6)
