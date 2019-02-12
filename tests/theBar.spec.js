@@ -8,7 +8,7 @@ const {
 } = require('mocha')
 
 const {
-  // test,
+  test,
   createBar,
   Customer,
   findDrink,
@@ -17,11 +17,11 @@ const {
 
 } = require('..')
 
-// describe('tests', () => {
-//   it('should prove test environment is set up', () => {
-//     expect(test()).to.equal('working')
-//   })
-// })
+describe('tests', () => {
+  it('should prove test environment is set up', () => {
+    expect(test()).to.equal('working')
+  })
+})
 
 describe('the bar', () => {
   const bar = createBar()
