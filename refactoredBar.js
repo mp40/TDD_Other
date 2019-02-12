@@ -74,12 +74,6 @@ class Customer {
   }
 }
 
-// const eachHour = function (customer, bar) {
-//   for (let i = 0; i < customer.perHour; i++) {
-//     bar.buyDrink(customer)
-//   }
-// }
-
 module.exports = {
   test,
   createBar,
